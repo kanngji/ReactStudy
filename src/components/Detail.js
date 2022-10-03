@@ -1,7 +1,14 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 
 import { useParams } from "react-router-dom";
 function Detail(props) {
+  useEffect(() => {
+    setTimeout(() => {
+      setAlert(false);
+    }, 2000);
+  }, []);
+  let [count, setCount] = useState(0);
+  let [alert, setAlert] = useState(true);
   let { id } = useParams();
   console.log(id);
   return (
@@ -23,6 +30,17 @@ function Detail(props) {
           </div>
         </div>
       </div>
+
+      <button
+        onClick={() => {
+          setCount(count + 1);
+        }}
+      >
+        버튼
+      </button>
+      {alert == true ? (
+        <div className="alert alert-warning">2초이내 구매시 할인</div>
+      ) : null}
     </Fragment>
   );
 }
